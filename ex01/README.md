@@ -1,9 +1,5 @@
 ## Build
 ```shell
-$ make ex1
+$ CFLAGS="-Wall" make ex1
 ```
 
-## Run
-```shell
-$ ./ex1
-```
