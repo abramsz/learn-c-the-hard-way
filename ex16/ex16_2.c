@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <alloca.h>
 
 struct student{
   char name[100];
@@ -16,18 +17,19 @@ void show_prt(struct student* st){
 
 int main(int argc, char *argv[])
 {
-  struct student st1;
-  st1.age = 20;
-  strcpy(st1.name, "bob1");
+  struct student* st1 = alloca(sizeof(struct student));
+  st1->age = 20;
+  strcpy(st1->name, "bob1");
 
-  show(st1);
+  show(*st1);
 
   struct student st2 = {"bob2", 40};
   show(st2);
 
-  show_prt(&st1);
+  strcpy(st1->name,"bob11");
+  show_prt(st1);
 
-  free(&st1);
+//  free(&st1);
 
   return 0;
 }
