@@ -15,16 +15,32 @@ struct Address{
   char email[MAX_DATA];
 };
 
+struct Address2{
+  int id;
+  int set;
+  char name[MAX_DATA];
+  char email[MAX_DATA];
+};
+
 
 struct Database {
   struct Address rows[MAX_ROWS];
 };
+
+struct Database2 {
+  struct Address rows[MAX_ROWS];
+};
+
 
 struct Connection {
   FILE* file;
   struct Database* db;
 };
 
+struct Connection2 {
+  FILE* file;
+  struct Database* db;
+};
 
 void die(const char* message){
   if(errno){
@@ -47,6 +63,15 @@ void database_load(struct Connection* conn){
 }
 
 struct Connection* database_open(const char* filename, char mode){
+  size_t conn_len = sizeof(struct Connection2);
+  printf("size of Connection: %ld\n", conn_len);
+
+  size_t db_len = sizeof(struct Database2);
+  printf("size of Database: %ld\n", db_len);
+
+  size_t addr_len = sizeof(struct Address2);
+  printf("size of Address: %ld\n", addr_len);
+
   struct Connection* conn = malloc(sizeof(struct Connection));
   if (!conn) {
     die("Memory error");
